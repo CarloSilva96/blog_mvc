@@ -1,0 +1,22 @@
+<!-- Usando helper de form do ruby-on-rails -->
+<%= form_with model: artigo do |form| %>
+  <div>
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo %>
+    <% artigo.errors.full_messages_for(:titulo).each do |msg_error| %>
+      <div> <%= msg_error %> </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :conteudo %>
+    <%= form.text_area :conteudo %>
+    <% artigo.errors.full_messages_for(:conteudo).each do |msg_error| %>
+      <div> <%= msg_error %> </div>
+    <% end %>
+  </div>
+  </div>
+  <div>
+    <%= form.submit "Salvar Artigo" %>
+  </div>
+
+<% end %>

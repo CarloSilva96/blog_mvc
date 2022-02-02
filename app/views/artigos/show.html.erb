@@ -1,10 +1,6 @@
 <h1><%= @artigo.titulo %></h1>
-
-<ul>  
-  <li> 
-    <%= @artigo.titulo %>
-    <%= @artigo.conteudo %>
-  </li>  
+<p><%= @artigo.conteudo %></p>
+<ul>
+  <li><%= link_to 'Voltar', root_path %></li>
+  <li><%= link_to 'Editar', edit_artigo_path(@artigo) %></li>
 </ul>
-
-<%= link_to 'Voltar', root_path %>

@@ -18,8 +18,23 @@ class ArtigosController < ApplicationController
     end
   end
 
+  def update 
+    @artigo = Artigo.find(params[:id])
+    
+    # atualizando e passando parametros que vem do formulario 
+    if @artigo.update(artigos_params)
+      redirect_to @artigo
+    else
+      render :edit
+    end
+  end
+
   def new
     @artigo = Artigo.new
+  end
+
+  def edit
+    @artigo = Artigo.find(params[:id])
   end
 
   private
