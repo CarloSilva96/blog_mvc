@@ -1,0 +1,25 @@
+FROM minimum2scp/ruby-full
+WORKDIR '/blog_mvc'
+COPY ./Gemfile .
+COPY ./Gemfile.lock .
+
+EXPOSE 3000
+
+RUN apt install -y libpq-dev
+RUN curl https://deb.nodesource.com/setup_12.x | bash
+RUN apt-get update -qq && apt-get install -y nodejs
+
+RUN apt-get install -y npm
+RUN npm install --global yarn
+
+RUN gem install rails -v 6.1.4.4
+RUN bundle install
+
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+
+# Configure the main process to run when running the image
+CMD ["rails", "server", "-b", "0.0.0.0"]

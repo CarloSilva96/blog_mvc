@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  blog_mvc:
+    container_name: container_blog_mvc
+    build:
+      dockerfile: Dockerfile.dev
+      context: "."
+    volumes:
+      - .:/blog_mvc
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+  postgres:
+    container_name: container_db_blog
+    image: postgres:14.0
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres     
+      POSTGRES_DB: blog_mvc
+    ports:
+      - "5436:5432"
