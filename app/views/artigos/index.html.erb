@@ -1,6 +1,9 @@
 <h1>Artigos</h1>
 <ul>
   <% @artigos.each do |artigo| %>
-    <li> <%= artigo.titulo %> </li>
+    <li> 
+      <!-- Usando helper link_to(string do link, rota do objeto) para utilizar rota do show de artigo -->
+      <%= link_to artigo.titulo, artigo %> 
+    </li>
   <% end %>
 </ul>

@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root 'artigos#index'
 
   # rota de artigos
-  get '/artigos', to: 'artigos#index'
+  resources :artigos
 end
