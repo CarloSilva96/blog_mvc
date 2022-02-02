@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  resources :produtos
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # rota raiz / inicial ao acessar localhost
+  root 'artigos#index'
+
+  # rota de artigos
+  get '/artigos', to: 'artigos#index'
 end
