@@ -1,10 +1,11 @@
 class ArtigosController < ApplicationController
+  before_action :set_artigo, only: %i[show edit update destroy]
+
   def index
     @artigos = Artigo.all
   end
 
-  def show
-    @artigo = Artigo.find(params[:id])    
+  def show 
   end
 
   def create
@@ -19,8 +20,6 @@ class ArtigosController < ApplicationController
   end
 
   def update 
-    @artigo = Artigo.find(params[:id])
-    
     # atualizando e passando parametros que vem do formulario 
     if @artigo.update(artigos_params)
       redirect_to @artigo
@@ -29,18 +28,26 @@ class ArtigosController < ApplicationController
     end
   end
 
+  def destroy
+    @artigo.destroy
+    redirect_to root_path
+  end
+
   def new
     @artigo = Artigo.new
   end
 
   def edit
-    @artigo = Artigo.find(params[:id])
   end
 
   private
 
   def artigos_params
     params.require(:artigo).permit(:titulo, :conteudo)
+  end
+
+  def set_artigo
+    @artigo = Artigo.find(params[:id])
   end
 
 end

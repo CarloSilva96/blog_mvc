@@ -1,6 +1,15 @@
 <h1><%= @artigo.titulo %></h1>
 <p><%= @artigo.conteudo %></p>
 <ul>
-  <li><%= link_to 'Voltar', root_path %></li>
-  <li><%= link_to 'Editar', edit_artigo_path(@artigo) %></li>
+  <li><%= link_to 'Back', root_path %></li>
+  <li><%= link_to 'Edit', edit_artigo_path(@artigo) %></li>
+  <li>
+    <!-- Informando que o link_to está vinculado a acao de destroy do controler -->
+    <%= link_to 'Destroy', artigo_path(@artigo),
+      method: :delete,
+      data: { 
+        confirm: 'Are you sure'
+      }
+    %>
+   </li>
 </ul>
