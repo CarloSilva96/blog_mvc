@@ -5,8 +5,7 @@ class ArtigosController < ApplicationController
     @artigos = Artigo.all
   end
 
-  def show 
-  end
+  def show; end
 
   def create
     @artigo = Artigo.new(artigos_params)
@@ -37,8 +36,7 @@ class ArtigosController < ApplicationController
     @artigo = Artigo.new
   end
 
-  def edit
-  end
+  def edit; end
 
   private
 
