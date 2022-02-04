@@ -2,11 +2,23 @@ class ArtigosController < ApplicationController
   before_action :set_artigo, only: %i[show edit update destroy]
 
   def index
+    # pegando os 3 artigos recentes
+    @artigos_recentes = Artigo.desc_order.first(3)
+
     # pegando página atual do params
     pagina_atual = (params[:page] || 1).to_i
 
-    # fazendo paginacao e ordenando por ordem de criacao(do mais novo para mais antigo)
-    @artigos = Artigo.order(created_at: :desc).page(pagina_atual).per(2)
+    # retornando os IDS do artigos recentes com formato de string separado por virgula
+    artigos_recentes_ids = @artigos_recentes.pluck(:id).join(',')
+    
+    if artigos_recentes_ids.present?
+      # fazendo paginacao e ordenando por ordem de criacao(do mais novo para mais antigo) sem os 3 artigos mais recentes
+      @artigos = Artigo.get_artigos_recentes(artigos_recentes_ids) 
+                       .desc_order.page(pagina_atual)
+    else
+      # fazendo paginacao e ordenando por ordem de criacao(do mais novo para mais antigo) 
+      @artigos = Artigo.desc_order.page(pagina_atual)
+    end
   end
 
   def show; end
