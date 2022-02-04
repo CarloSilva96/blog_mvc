@@ -2,7 +2,11 @@ class ArtigosController < ApplicationController
   before_action :set_artigo, only: %i[show edit update destroy]
 
   def index
-    @artigos = Artigo.all
+    # pegando página atual do params
+    pagina_atual = (params[:page] || 1).to_i
+
+    # fazendo paginacao e ordenando por ordem de criacao(do mais novo para mais antigo)
+    @artigos = Artigo.order(created_at: :desc).page(pagina_atual).per(2)
   end
 
   def show; end
