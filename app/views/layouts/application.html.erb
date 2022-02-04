@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <!-- Template responsivo com bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>    
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +16,9 @@
 
   <body>
     <%= render 'layouts/top_navbar' %>
-    <%= yield %>
+    <main class="container"> 
+      <%= yield %>
+    </main>
     <%= render 'layouts/footer' %>
   </body>
 </html>

@@ -1,12 +1,25 @@
 <h1>Artigos</h1>
 
-<%= link_to 'New Article', new_artigo_path %>
+<%= render 'longer_featured' %>
 
-<ul>
-  <% @artigos.each do |artigo| %>
-    <li> 
-      <!-- Usando helper link_to(string do link, rota do objeto) para utilizar rota do show de artigo -->
-      <%= link_to artigo.titulo, artigo %> 
-    </li>
-  <% end %>
-</ul>
+<div class="row mb-2" >  
+  <%= render 'medium_featured' %>
+  <%= render 'medium_featured' %>
+</div>
+
+<div class="row g-5">
+  <div class="col-md-8">
+    <h3 class="pb-4 mb-4 fst-italic border-bottom">
+      From the Firehose
+    </h3>    
+
+    <p><%= link_to 'New Article', new_artigo_path, class: "btn btn-primary" %></p>
+    
+    <!-- Rails consegue exibir cada artigo sabe que artigos é uma lista que contem artigo e renderiza o _artigo para cada iteração -->
+    <%= render @artigos %>    
+
+    <%= render 'pagination' %>
+  </div>
+  
+  <%= render 'menu_lateral' %>
+</div>

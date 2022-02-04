@@ -1,0 +1,21 @@
+<article class="blog-post">
+  <h2 class="blog-post-title"><%= artigo.titulo %></h2>
+  <p class="blog-post-meta"><%=  dia_me_ano(artigo.created_at) %><a href="#"> Chris</a></p>
+
+  <!-- Helper do rails para truncar o conteudo -->
+  <p><%= truncate(artigo.conteudo, length: 150) %></p>
+  
+  <!-- Link para continuar leitura do artigo e renderizando o show do artigo selecionado -->
+  <p> <%= link_to 'Continue reading...', artigo, class: "btn btn-link" %> </p>
+
+  <%= link_to 'Edit', edit_artigo_path(artigo), class: "btn btn-secondary" %>
+  
+  <!-- Informando que o link_to está vinculado a acao de destroy do controler -->
+  <%= link_to 'Destroy', artigo_path(artigo),
+    method: :delete,
+    data: { 
+      confirm: 'Are you sure'
+    },
+    class: "btn btn-danger"
+  %>   
+</article>
